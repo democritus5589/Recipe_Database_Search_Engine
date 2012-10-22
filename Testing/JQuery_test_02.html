@@ -1,0 +1,103 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+<title>Demo - Expandable - Collpasible Layer with Jquery</title> 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script> 
+<script type="text/javascript">
+jQuery(document).ready(function() {
+  jQuery(".content").hide();
+  //toggle the componenet with class msg_body
+  jQuery(".heading").click(function()
+  {
+    jQuery(this).next(".content").slideToggle(500);
+  });
+});
+</script>
+<style type="text/css"> 
+body {
+	margin: 20px auto;
+	font: 12px Verdana,Arial, Helvetica, sans-serif;
+}
+.layer1 {
+margin: 0;
+padding: 0;
+width: 500px;
+}
+ 
+.heading {
+margin: 1px;
+color: #fff;
+padding: 3px 10px;
+cursor: pointer;
+position: relative;
+background-color:#c30;
+}
+.content {
+padding: 5px 10px;
+background-color:#fafafa;
+}
+p { padding: 5px 0; }
+</style> 
+</head> 
+<body> 
+<div align="center"> 
+  <p>Click on the each header to expand and collapse the pane</p> 
+  
+</div> 
+<div class="layer1"> 
+		<p class="heading">Header-1 </p> 
+		<div class="content"> 
+			Lorem ipsum dolor sit amet, consectetuer adipiscing elit orem ipsum dolor sit amet, consectetuer adipiscing elit
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit orem ipsum dolor sit amet, consectetuer adipiscing elit
+		</div> 
+		<p class="heading">Header-2</p> 
+		<div class="content"> 
+			<script type="text/javascript"><!--
+			google_ad_client = "ca-pub-3952305066842373";
+
+			google_ad_slot = "1210134107";
+			google_ad_width = 468;
+			google_ad_height = 60;
+			//-->
+			</script>
+			<script type="text/javascript"
+			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+			</script>
+		</div> 
+		<p class="heading">Header-3</p> 
+		<div class="content"> 
+			Lorem ipsum dolor sit amet, consectetuer adipiscing elit orem ipsum dolor sit amet, consectetuer adipiscing elit
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit orem ipsum dolor sit amet, consectetuer adipiscing elit
+		</div> 
+</div> 
+ 
+<div style="text-align:center;margin:50px 0 0;">Back to Post : <a href="http://designgala.com/how-to-expand-collapse-toggle-div-layer-using-jquery/"><strong>How to expand collapse (toggle) div layer using jQuery</strong></a></div> 
+
+<div align="center" style="margin-top:20px"> 
+	<script type="text/javascript"><!--
+	google_ad_client = "ca-pub-3952305066842373";
+
+	google_ad_slot = "1210134107";
+	google_ad_width = 468;
+	google_ad_height = 60;
+	//-->
+	</script>
+	<script type="text/javascript"
+	src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+	</script>
+</div> 
+<script type="text/javascript"> 
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script> 
+<script type="text/javascript"> 
+var pageTracker = _gat._getTracker("UA-241563-8");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script> 
+
+ 
+</body> 
+</html> 
