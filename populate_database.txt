@@ -1,0 +1,73 @@
+CREATE DATABASE recipes;
+USE recipes;
+
+CREATE TABLE user(
+uid int AUTO_INCREMENT PRIMARY KEY,
+username varchar(20) NOT NULL,
+password varchar(20) NOT NULL,
+acnt_type ENUM('admin', 'moderator', 'reg', 'guest') NOT NULL default 'guest',
+join_date DATE NOT NULL
+);
+
+CREATE TABLE recipe(
+rid int AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+description VARCHAR(1000),
+uid INT NOT NULL REFERENCES user(uid),
+date_submitted DATE NOT NULL,
+display BIT(1) NOT NULL default 1
+);
+
+CREATE TABLE ingredients(
+iid INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(20) NOT NULL,
+display BIT(1) NOT NULL default 1
+);
+
+CREATE TABLE steps(
+sid INT AUTO_INCREMENT PRIMARY KEY,
+rid INT NOT NULL REFERENCES recipe(rid),
+description VARCHAR(1000) NOT NULL,
+order_num INT NOT NULL
+);
+
+CREATE TABLE pictures(
+pid INT AUTO_INCREMENT PRIMARY KEY,
+rid INT NOT NULL REFERENCES recipe(rid),
+caption VARCHAR(100) NOT NULL,
+file BLOB NOT NULL
+);
+
+CREATE TABLE ratings(
+ratid INT AUTO_INCREMENT PRIMARY KEY,
+rid INT NOT NULL REFERENCES recipe(rid),
+uid INT NOT NULL REFERENCES user(uid)
+);
+
+CREATE TABLE comments(
+cid INT AUTO_INCREMENT PRIMARY KEY,
+uid INT NOT NULL REFERENCES user(uid),
+rid INT NOT NULL REFERENCES recipe(rid),
+ratid INT REFERENCES ratings(ratid),
+description VARCHAR(1000) NOT NULL
+);
+
+CREATE TABLE favorite_recipes(
+uid INT NOT NULL REFERENCES user(uid),
+rid INT NOT NULL REFERENCES recipe(rid)
+);
+
+CREATE TABLE pantry(
+uid INT NOT NULL REFERENCES user(uid),
+iid INT NOT NULL REFERENCES ingredients(iid)
+);
+
+CREATE TABLE keywords(
+keyword VARCHAR(20) NOT NULL,
+rid INT NOT NULL REFERENCES recipe(rid)
+);
+
+CREATE TABLE is_used_in(
+rid INT NOT NULL REFERENCES recipe(rid),
+iid INT NOT NULL REFERENCES ingredients(iid)
+);
