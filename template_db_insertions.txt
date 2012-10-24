@@ -1,0 +1,23 @@
+USE recipes;
+
+INSERT INTO user (username, password, acnt_type, join_date) VALUES ('Your Name', 'Your password', 'reg', CURDATE());
+
+INSERT INTO recipe (name, description, uid, date_submitted, display) VALUES ('recipe name', 'recipe description', 1, CURDATE(), DEFAULT);
+
+INSERT INTO ingredients (name, display) VALUES ('ingredient name', DEFAULT);
+
+INSERT INTO steps (rid, description, order_num) VALUES (1, 'step instructions', 1);
+
+INSERT INTO pictures (rid, caption, file) VALUES (1, 'pic caption', 'C:\Windows\DirectX.txt');
+
+INSERT INTO ratings (rid, uid, value) VALUES (1, 1, 4);
+
+INSERT INTO comments (uid, rid, ratid, description) VALUES (1, 1, NULL, 'comment description');
+
+INSERT INTO favorite_recipes (uid, rid) VALUES (1, 1);
+
+INSERT INTO pantry (uid, lid) VALUES (1, 1);
+
+INSERT INTO keywords (keyword, rid) VALUES ('dessert', 1);
+
+INSERT INTO is_used_in (rid, iid) VALUES (1, 1);

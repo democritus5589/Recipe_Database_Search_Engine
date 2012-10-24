@@ -41,7 +41,8 @@ file BLOB NOT NULL
 CREATE TABLE ratings(
 ratid INT AUTO_INCREMENT PRIMARY KEY,
 rid INT NOT NULL REFERENCES recipe(rid),
-uid INT NOT NULL REFERENCES user(uid)
+uid INT NOT NULL REFERENCES user(uid),
+value INT NOT NULL
 );
 
 CREATE TABLE comments(
