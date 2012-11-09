@@ -1,0 +1,380 @@
+/************************************************/
+	Retrieval Actions
+/************************************************/
+
+// get all
+all recipes
+all ingredients
+all users
+all admins
+all moderators
+all regs
+all recipes containing %query% name
+all recipes containing keyword query
+all recipes containing ingredient query
+all recipes not containing ingredient query
+all recipes containing only ingredients query1 query2 query3
+all keywords
+
+// get specifics
+ingredients for specific recipe
+comments for specific recipe
+ratings for specific recipe // for use in generating average rating
+recipes submitted by specific user
+favorite recipes of specific user
+ingredients in specific user's pantry
+keywords for specifc recipe
+steps for specific recipe
+picture for specific recipe
+comments from a specific user
+
+// get individual items
+user from username
+recipe from name
+recipe from rid
+ingredient from name
+ingredient from iid
+step from sid
+picture from pid
+rating from ratid
+comment from cid
+
+
+//------------------------------------------------
+
+get all recipes
+
+SELECT r.name, r.rid
+FROM recipe r
+WHERE
+r.display = 1
+
+
+get all ingredients
+
+SELECT i.name, i.iid
+FROM ingredients i
+WHERE
+i.display = 1
+
+
+get all users
+
+SELECT u.username, u.uid, u.acnt_type, u.join_date
+FROM user u
+
+
+all admins
+
+SELECT u.username, u.uid, u.join_date
+FROM user u
+WHERE
+u.acnt_type = 'admin'
+
+
+all moderators
+
+SELECT u.username, u.uid, u.join_date
+FROM user u
+WHERE
+u.acnt_type = 'moderator'
+
+
+all regs
+
+SELECT u.username, u.uid, u.join_date
+FROM user u
+WHERE
+u.acnt_type = 'reg'
+
+
+all recipes containing %query% name
+
+SELECT r.name, r.rid
+FROM recipe r
+WHERE
+r.name LIKE '%query%' AND
+r.display = 1
+ 
+
+all recipes containing keyword query
+
+SELECT r.name, r.rid
+FROM recipe r, keywords k
+WHERE
+k.keyword = query AND
+k.rid = r.rid AND
+r.display = 1
+
+
+all recipes containing ingredient query
+
+SELECT r.name, r.rid
+FROM recipe r, is_used_in u
+WHERE
+u.iid = query AND
+u.rid = r.rid AND
+r.display = 1
+
+
+
+all recipes not containing ingredient query
+
+SELECT r.name, r.rid
+FROM recipe r
+WHERE
+r.display = 1 AND
+r.rid NOT IN(
+
+SELECT r1.rid
+FROM recipe r, is_used_in u
+WHERE
+u.iid = query AND
+u.rid = r.rid
+
+)
+
+
+all recipes containing only ingredients query1 query2 query3
+
+
+
+all keywords
+
+SELECT k.keyword
+FROM keyword k
+
+
+get ingredients for specific recipe
+
+SELECT i.name, i.iid
+FROM ingredients i, is_used_in u
+WHERE
+u.rid = query AND
+u.iid = i.iid AND
+i.display = 1
+
+
+get comments for specific recipe
+
+SELECT u.username, rat.value, c.description
+FROM user u, ratings rat, comments c
+WHERE
+c.rid = query AND
+c.uid = u.uid AND
+(
+c.ratid = rat.ratid OR
+c.ratid IS NULL
+)
+
+get ratings for specific recipe // for use in generating average rating
+
+SELECT rat.value
+FROM ratings rat
+WHERE
+rat.rid = query
+
+
+get recipes submitted by specific user
+
+SELECT r.name, r.rid
+FROM recipes r
+WHERE
+r.uid = query AND
+r.display = 1
+
+
+get favorite recipes of specific user
+
+SELECT r.name, r.rid
+FROM recipes r, favorite_recipes f
+WHERE
+f.uid = query AND
+f.rid = r.rid AND
+r.display = 1
+ORDER BY
+r.name
+
+
+
+get ingredients in specific user's pantry
+
+SELECT i.name, i.iid
+FROM ingredients i, pantry p
+WHERE
+p.uid = query AND
+p.iid = i.iid AND
+i.display = 1
+ORDER BY
+i.name
+
+
+get keywords for specific recipe
+
+SELECT k.keyword
+FROM keywords k
+WHERE
+k.rid = query
+
+
+get steps for specific recipe
+
+SELECT s.description, s.order_num
+FROM steps s
+WHERE
+s.rid = query
+ORDER BY
+s.order_num ASC
+
+
+picture for specific recipe
+
+SELECT p.caption, p.file
+FROM picture p
+WHERE
+p.rid = query
+
+
+
+
+get user from username
+
+SELECT u.uid, u.acnt_type, u.join_date
+FROM user u
+WHERE
+u.username = query
+
+get user from uid
+
+SELECT u.username, u.acnt_type, u.join_date
+FROM user u
+WHERE
+u.uid = query
+
+
+get login info for uid
+
+SELECT u.username, u.password
+FROM user u
+WHERE
+u.uid = query
+
+
+get recipe from name
+
+SELECT r.rid, r.description, u.username
+FROM recipe r, user u
+WHERE
+r.name = query AND
+r.display = 1 AND
+r.uid = u.uid
+
+
+get recipe from rid
+
+SELECT r.name, r.description, u.username
+FROM recipe r, user u
+WHERE
+r.rid = query AND
+r.display = 1 AND
+r.uid = u.uid
+
+
+get ingredient from name
+
+SELECT i.iid
+FROM ingredients i
+WHERE
+i.name = query AND 
+i.display = 1
+
+
+get ingredient from iid
+
+SELECT i.name
+FROM ingredients i
+WHERE
+i.iid = query
+
+
+get step from sid
+
+SELECT s.description, s.order_num
+FROM steps s
+WHERE
+s.sid = query
+
+
+get picture from pid
+
+SELECT p.caption, p.file
+FROM pictures p
+WHERE
+p.pid = query
+
+
+get rating from ratid
+
+SELECT rat.value
+FROM ratings rat
+WHERE
+rat.ratid = query
+
+
+get comment from cid
+
+SELECT c.description
+FROM comments c
+WHERE
+c.cid = query
+
+
+given an exact username, find all recipes with comments
+
+SELECT r.name, r.rid, c.description
+FROM recipe r, user u, comments c
+WHERE
+u.username = query AND
+u.uid = r.uid AND
+r.display = 1 AND
+u.uid = c.uid AND
+r.rid = c.rid
+ORDER BY
+r.name
+
+
+
+
+//-------------------------------------------
+	Account Queries
+//-------------------------------------------
+
+verify username and password are valid, return uid, account type, join date
+
+SELECT u.uid, u.acnt_type, u.join_date
+FROM user u
+WHERE
+u.username = query1 AND
+u.password = query2
+
+
+retrive all 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

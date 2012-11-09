@@ -6,7 +6,8 @@ uid int AUTO_INCREMENT PRIMARY KEY,
 username varchar(20) NOT NULL,
 password varchar(20) NOT NULL,
 acnt_type ENUM('admin', 'moderator', 'reg', 'guest') NOT NULL default 'guest',
-join_date DATE NOT NULL
+join_date DATE NOT NULL,
+UNIQUE (username)
 );
 
 CREATE TABLE recipe(
@@ -21,7 +22,8 @@ display BIT(1) NOT NULL default 1
 CREATE TABLE ingredients(
 iid INT AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(20) NOT NULL,
-display BIT(1) NOT NULL default 1
+display BIT(1) NOT NULL default 1,
+UNIQUE (name)
 );
 
 CREATE TABLE steps(
