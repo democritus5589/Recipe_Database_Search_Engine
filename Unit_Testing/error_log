@@ -1,0 +1,4 @@
+[09-Nov-2012 09:08:31] PHP Fatal error:  Call to undefined function  runrecipetests() in /home/ab4307/public_html/recipe_testing/Unit_Testing/TestSuites.php on line 10
+[09-Nov-2012 09:10:55] PHP Fatal error:  Class 'db_connect' not found in /home/ab4307/public_html/recipe_testing/Methods/db_recipes.php on line 14
+[09-Nov-2012 09:16:44] PHP Catchable fatal error:  Object of class PHPUnit_TestResult could not be converted to string in /home/ab4307/public_html/recipe_testing/Unit_Testing/TestSuites.php on line 19
+[09-Nov-2012 11:30:29] PHP Parse error:  syntax error, unexpected '{', expecting '(' in /home/ab4307/public_html/recipe_testing/Unit_Testing/TEST_db_recipes.php on line 246
